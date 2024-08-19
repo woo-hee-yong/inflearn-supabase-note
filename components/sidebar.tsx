@@ -9,7 +9,7 @@ export default function Sidebar({
     , setSearch
 }){
 
-    return <aside className="absolute top-0 left-0 bottom-0 w-1/3 overflow-y-scroll p-2 border-r border-gray-300">
+    return <aside className="absolute top-0 left-0 bottom-0 w-1/6 overflow-y-scroll p-2 border-r border-gray-300">
         <button 
             onClick={()=> {
                 setActiveNoteId(null)

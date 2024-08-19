@@ -31,7 +31,7 @@ export default function NewNote({
         setIsCreating(false);
     };
 
-    return <div className = "w-2/3 p-2 flex flex-col gap-2 absolute top-0 bottom-0 right-0">
+    return <div className = "w-5/6 p-2 flex flex-col gap-2 absolute top-0 bottom-0 right-0">
         <input type="text" 
             value={title}
             onChange={(e) => setTitle(e.target.value)}
