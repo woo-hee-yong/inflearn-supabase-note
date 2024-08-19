@@ -9,8 +9,6 @@ export default function Sidebar({
     , setSearch
 }){
 
-
-
     return <aside className="absolute top-0 left-0 bottom-0 w-1/3 overflow-y-scroll p-2 border-r border-gray-300">
         <button 
             onClick={()=> {
@@ -37,9 +35,8 @@ export default function Sidebar({
                         onClick={()=> {
                             setIsCreating(false);
                             setActiveNoteId(note.id)
-                            
                         }}>
-                        {note.title}
+                        ◐ {note.title}
                     </button>
                 </li>
             ))}

@@ -6,6 +6,6 @@ export default function EmptyNote(){
     const [content, setContent] = useState("");
 
     return <div className = "w-2/3 p-2 flex flex-col items-center justify-center font-bold text-xl gap-2 absolute top-0 bottom-0 right-0">
-        새로운 노트를 만들어 주세요😎
+        <img src="/NewNote.jpeg" className = "w-fit h-full justify-center items-center" alt="Supanote Logo"/>
     </div>;
 }
