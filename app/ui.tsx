@@ -10,15 +10,18 @@ import { supabase } from "@/utils/supabase";
 import { Database } from "@/types_db";
 
 
-export default function UI(){
+export default function UI({}){
     const [activeNoteId, setActiveNoteId] = useState(null);
+    const [activeNewNoteBtn, setActiveNewNoteBtn ] =  useState(true);
     const [isCreating, setIsCreating] = useState(false);
     const [notes, setNotes] = useState<Database['public']['Tables']['note']['Row'][]>([]);
     const [search, setSearch] = useState("");
+
     const fetchNotes = async () => {
       const {data, error} = await supabase
         .from('note')
         .select("*")
+        .match({del_yn : 'N'})
         .ilike("title", `%${search}%`);
 
       if(error){
@@ -38,9 +41,9 @@ export default function UI(){
 
     return (
         <main className="w-full h-screen flex flex-col">
-          <Header />
+          <Header setActiveNoteId={setActiveNoteId} setIsCreating={setIsCreating} activeNewNoteBtn={activeNewNoteBtn} search={search} setSearch={setSearch}/>
           <div className="grow relative ">
-            <Sidebar activeNoteId={activeNoteId} setActiveNoteId={setActiveNoteId} setIsCreating={setIsCreating} notes={notes} search={search} setSearch={setSearch}/>
+            <Sidebar activeNoteId={activeNoteId} setActiveNoteId={setActiveNoteId} setIsCreating={setIsCreating} notes={notes} />
             {
               isCreating ? (  <NewNote fetchNotes={fetchNotes} setActiveNoteId={setActiveNoteId} setIsCreating={setIsCreating}/>
               

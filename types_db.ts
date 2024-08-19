@@ -13,18 +13,21 @@ export type Database = {
         Row: {
           content: string
           created_at: string
+          del_yn: string | null
           id: number
           title: string
         }
         Insert: {
           content: string
           created_at?: string
+          del_yn?: string | null
           id?: number
           title: string
         }
         Update: {
           content?: string
           created_at?: string
+          del_yn?: string | null
           id?: number
           title?: string
         }

@@ -30,9 +30,19 @@ export default function NoteViewer({
     };
 
     const onDelete = async () => {
+        // const {data, error} = await supabase
+        // .from('note')
+        // .delete({})
+        // .eq('id', note.id);
+
+        // if(error){
+        //     alert(error.message);
+        // }
         const {data, error} = await supabase
         .from('note')
-        .delete()
+        .update({
+            del_yn : 'Y'
+        })
         .eq('id', note.id);
 
         if(error){
@@ -50,7 +60,7 @@ export default function NoteViewer({
         setIsEdting(false);
     }, [note]);
 
-    return <div className = "w-5/6 p-2 flex flex-col gap-2 absolute top-0 bottom-0 right-0">
+    return <div className = "w-3/4 p-2 flex flex-col gap-2 absolute top-0 bottom-0 right-0">
         {
             isEditing ? (
                 <>
