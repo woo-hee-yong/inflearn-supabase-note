@@ -1,14 +1,33 @@
 'use client'
+import { supabase } from '@/utils/supabase';
 import {useState} from 'react';
 
 export default function NewNote({
-    setIsCreating
+    setIsCreating,
+    setActiveNoteId,
+    fetchNotes
 }){
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
 
     const onSave = async() => {
-        // Supabase에 노트 저장
+        if(!title || !content){
+            alert("제목과 내용을 입력해주세요.");
+            return false;
+        }
+        const {data, error} = await supabase
+            .from('note')
+            .insert({
+                title,
+                content,
+            })
+            .select();
+        if(error){
+            alert(error.message);
+            return false;
+        }
+        await fetchNotes();
+        setActiveNoteId((data as any[])[0].id);
         setIsCreating(false);
     };
 
