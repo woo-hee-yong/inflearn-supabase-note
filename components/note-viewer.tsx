@@ -80,9 +80,10 @@ export default function NoteViewer({
                     <h1 className="text-xl p-2">
                         {title}
                     </h1>
-                    <p 
+                    <textarea readOnly
+                        value={content}
                         className="border rounded-md border-gray-300 text-lg p-2 grow"
-                    >{content}</p>
+                        onChange={(e) => setContent(e.target.value)}/>
                 </>
             )
         }
