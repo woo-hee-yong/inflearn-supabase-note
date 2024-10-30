@@ -5,7 +5,7 @@ import  Sidebar from "@/components/sidebar";
 import  NewNote from "@/components/new-note";
 import  NoteViewer from "@/components/note-viewer";
 import  EmptyNote from "@/components/empty-note";
-import  {useState, useEffect} from 'react';
+import  {useState, useEffect, useRef} from 'react';
 import { supabase } from "@/utils/supabase";
 import { Database } from "@/types_db";
 
@@ -16,7 +16,8 @@ export default function UI({}){
     const [isCreating, setIsCreating] = useState(false);
     const [notes, setNotes] = useState<Database['public']['Tables']['note']['Row'][]>([]);
     const [search, setSearch] = useState("");
-
+    const ref = useRef(false);
+    
     const fetchNotes = async () => {
       const {data, error} = await supabase
         .from('note')
@@ -32,10 +33,9 @@ export default function UI({}){
     }
 
     useEffect(() => {
-      fetchNotes();
-    }, []);
-    
-    useEffect(() => {
+   
+      if (ref.current) return;
+      ref.current = true;
       fetchNotes();
     }, [search]);
 
