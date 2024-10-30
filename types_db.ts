@@ -9,6 +9,30 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      food: {
+        Row: {
+          created_at: string
+          food_map: string | null
+          food_nm: string | null
+          id: number
+          use_yn: string | null
+        }
+        Insert: {
+          created_at?: string
+          food_map?: string | null
+          food_nm?: string | null
+          id?: number
+          use_yn?: string | null
+        }
+        Update: {
+          created_at?: string
+          food_map?: string | null
+          food_nm?: string | null
+          id?: number
+          use_yn?: string | null
+        }
+        Relationships: []
+      }
       note: {
         Row: {
           content: string
@@ -129,4 +153,19 @@ export type Enums<
   ? Database[PublicEnumNameOrOptions["schema"]]["Enums"][EnumName]
   : PublicEnumNameOrOptions extends keyof PublicSchema["Enums"]
     ? PublicSchema["Enums"][PublicEnumNameOrOptions]
+    : never
+
+export type CompositeTypes<
+  PublicCompositeTypeNameOrOptions extends
+    | keyof PublicSchema["CompositeTypes"]
+    | { schema: keyof Database },
+  CompositeTypeName extends PublicCompositeTypeNameOrOptions extends {
+    schema: keyof Database
+  }
+    ? keyof Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"]
+    : never = never,
+> = PublicCompositeTypeNameOrOptions extends { schema: keyof Database }
+  ? Database[PublicCompositeTypeNameOrOptions["schema"]]["CompositeTypes"][CompositeTypeName]
+  : PublicCompositeTypeNameOrOptions extends keyof PublicSchema["CompositeTypes"]
+    ? PublicSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions]
     : never
