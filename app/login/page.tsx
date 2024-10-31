@@ -4,8 +4,7 @@ import React, { useState, useEffect } from 'react';
 import  Header from "@/components/header";
 import { supabase } from "@/utils/supabase";
 import { Database } from "@/types_db";
-import "@/app/globals.css";
-import '@/app/app.css';
+
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState<string>('');
@@ -14,7 +13,7 @@ const Login: React.FC = () => {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (username === 'admin' && password === 'password') {
+    if (username === 'admin' && password === 'admin') {
       alert('Login successful!');
     } else {
       setError('Invalid credentials');
@@ -22,13 +21,13 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-black-600">
       <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
         <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">Login</h1>
         <form onSubmit={handleLogin} className="space-y-6">
           <div className="mb-4">
             <label className="block text-gray-700 font-semibold" htmlFor="username">
-              Username
+              Username                                                                      
             </label>
             <input
               className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"

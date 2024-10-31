@@ -4,8 +4,6 @@ import React, { useState, useEffect } from 'react';
 import  Header from "@/components/header";
 import { supabase } from "@/utils/supabase";
 import { Database } from "@/types_db";
-import "@/app/globals.css";
-import '@/app/app.css';
 const food = () => {
   const [selectedFood, setSelectedFood] = useState<{food_nm:string, food_map:string} | undefined>();
   const [tbFood, setTbFood] = useState<Database['public']['Tables']['food']['Row'][]>([]);
@@ -46,7 +44,7 @@ const food = () => {
           랜덤 음식 선택
         </button>
         {selectedFood && (
-          <div className="food">
+          <div className="">
             <h2>{selectedFood.food_nm}</h2>
             <iframe src={selectedFood.food_map} className="food-map" />
           </div>
