@@ -33,6 +33,36 @@ export type Database = {
         }
         Relationships: []
       }
+      member: {
+        Row: {
+          created_at: string
+          cust_id: string
+          cust_nm: string
+          cust_type: string | null
+          id: number
+          tel_num: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string
+          cust_id: string
+          cust_nm: string
+          cust_type?: string | null
+          id?: number
+          tel_num?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string
+          cust_id?: string
+          cust_nm?: string
+          cust_type?: string | null
+          id?: number
+          tel_num?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       note: {
         Row: {
           content: string

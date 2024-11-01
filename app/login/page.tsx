@@ -10,14 +10,40 @@ const Login: React.FC = () => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
+  const [login, setLogin] = useState<Database['public']['Tables']['member']['Row'][]>([]);
+ 
+  const fetchLogin = async () => {
+    console.log(username, password);
+    const {data, error} = await supabase
+    .from('member')
+    .select("*")
+    .match({use_yn : 'Y', cust_id:username, cust_pwd:password});
+    
+    if(error){
+      alert(error.message);
+      return false;
+    }
+    
+    if(data.length > 0){
+      setLogin(data);
+      location.href="/";
+      return false;
+    }else{
+      setLogin([]);
+      alert("로그인 아이디 및 비밀번호를 확인해주세요.");
+      return false;
+    }
+  }
 
+ 
   const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (username === 'admin' && password === 'admin') {
-      alert('Login successful!');
+
+    if (username !== '' && password !== '') {
+      fetchLogin();
     } else {
       setError('Invalid credentials');
     }
+    e.preventDefault();
   };
 
   return (

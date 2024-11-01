@@ -9,7 +9,7 @@ const food = () => {
   const [tbFood, setTbFood] = useState<Database['public']['Tables']['food']['Row'][]>([]);
   const [activeNewNoteBtn, setActiveNewNoteBtn ] =  useState(false);
   const [search, setSearch] = useState("");
-  const fetchNotes = async () => {
+  const fetchFoods = async () => {
     const {data, error} = await supabase
     .from('food')
     .select("*")
@@ -23,7 +23,7 @@ const food = () => {
   }
 
   useEffect(() => {
-    fetchNotes();
+    fetchFoods();
   }, []);
 
   const handleClick = () => {
